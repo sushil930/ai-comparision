@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis - AI Model Comparison</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <!-- Navigation content -->
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Navigation content -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold text-gray-900">Performance Analysis</h1>
+            <p class="mt-2 text-gray-600">Detailed comparison of AI models based on scores.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Detailed Scores Table -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Detailed Scores</h2>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Model</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Provider</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Access</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scoreTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Table rows dynamically populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-gray-500">&copy; 2026 AI Comparison Project.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data Source
+        const models = [
+            { name: "ChatGPT 5.3 Codex", provider: "OpenAI", access: "Paid", score: 6.5 },
+            { name: "GPT-5.1 Codex Max", provider: "OpenAI", access: "Paid", score: 7 },
+            { name: "Claude Sonnet 4.5", provider: "Anthropic", access: "Paid", score: 8 },
+            { name: "Opus 4.6", provider: "Anthropic", access: "Paid", score: 7.5 },
+            { name: "Gemini 3.0", provider: "Google", access: "Paid", score: 6.3 },
+            { name: "DeepSeek", provider: "DeepSeek", access: "Open Source", score: 6.9 },
+            { name: "Qwen 3 Max", provider: "Alibaba", access: "Open Source", score: 8.5 },
+            { name: "Mistral Large 3", provider: "Mistral", access: "Paid", score: 7.2 },
+            { name: "Kimi 2.5", provider: "Moonshot", access: "Paid", score: 9 },
+            { name: "Grok 4.1", provider: "xAI", access: "Paid", score: 4 },
+            { name: "GLM 4.5", provider: "Zhipu", access: "Paid", score: 6 }
+        ];
+
+        // Sort by score
+        const sortedModels = [...models].sort((a, b) => b.score - a.score);
+
+        // Populate Table
+        const tableBody = document.getElementById('scoreTableBody');
+        sortedModels.forEach((model, index) => {
+            const row = document.createElement('tr');
+            const getRating = (score) => {
+                if (score >= 8.5) return '⭐⭐⭐⭐⭐';
+                if (score >= 7.5) return '⭐⭐⭐⭐';
+                if (score >= 6.5) return '⭐⭐⭐';
+                if (score >= 5) return '⭐⭐';
+                return '⭐';
+            };
+
+            const rankBadge = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : (index + 1);
+            const accessColor = model.access === 'Open Source' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700';
+
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">${rankBadge}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">${model.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${model.provider}</td>
+                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full ${accessColor}">${model.access}</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-brand-600">${model.score.toFixed(1)}/10</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">${getRating(model.score)}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
