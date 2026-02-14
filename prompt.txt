@@ -1,0 +1,1 @@
+create a landing page for a pet shop called "The Happy Tails". Use trendy layout and design for pet shops, make it attractive for the pet lovers. Only use Html Javascript and tailwind CDN
