@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Happy Tails - Premier Pet Shop 🐾</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translate3d(0,0,0)' },
+                            '50%': { transform: 'translate3d(0,-10px,0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-pink-50 min-h-screen antialiased font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-xl shadow-lg z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-3xl font-black bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent flex items-center">
+                    The Happy Tails 🐾
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-lg font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-300">Home</a>
+                    <a href="#shop" class="text-lg font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-300">Shop</a>
+                    <a href="#about" class="text-lg font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-300">About</a>
+                    <a href="#testimonials" class="text-lg font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-300">Reviews</a>
+                    <a href="#contact" class="text-lg font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-300">Contact</a>
+                </div>
+                <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+                    <span class="sr-only">Toggle menu</span>
+                    ☰
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-gray-200">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#home" class="block py-2 text-xl font-semibold text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-xl px-4 transition-all duration-300">Home</a>
+                <a href="#shop" class="block py-2 text-xl font-semibold text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-xl px-4 transition-all duration-300">Shop</a>
+                <a href="#about" class="block py-2 text-xl font-semibold text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-xl px-4 transition-all duration-300">About</a>
+                <a href="#testimonials" class="block py-2 text-xl font-semibold text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-xl px-4 transition-all duration-300">Reviews</a>
+                <a href="#contact" class="block py-2 text-xl font-semibold text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-xl px-4 transition-all duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center pt-24 pb-20 bg-gradient-to-br from-orange-400 via-pink-500 to-yellow-400 text-white overflow-hidden relative">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 text-6xl animate-float">🐶</div>
+            <div class="absolute top-40 right-20 text-5xl animate-float delay-1000">🐱</div>
+            <div class="absolute bottom-32 left-1/4 text-6xl animate-float delay-2000">🐭</div>
+            <div class="absolute bottom-20 right-1/4 text-5xl animate-float">🐹</div>
+        </div>
+        <div class="text-center px-6 z-10 relative max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 bg-gradient-to-r from-white to-orange-100 bg-clip-text drop-shadow-2xl leading-tight">
+                Welcome to<br><span class="text-6xl md:text-8xl lg:text-9xl">The Happy Tails</span> 🐾
+            </h1>
+            <p class="text-xl md:text-3xl lg:text-4xl font-light mb-12 opacity-95 leading-relaxed">
+                Where Every Tail Wags with Joy! 🐕❤️🐈<br>Premium Products for Your Furry Friends
+            </p>
+            <a href="#shop" class="inline-block bg-white text-orange-500 px-12 py-6 md:px-16 md:py-7 rounded-3xl text-2xl font-bold shadow-2xl hover:scale-110 hover:shadow-3xl transition-all duration-500 hover:bg-orange-50">
+                Shop Now! 🛒✨
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop" class="py-24 px-6 bg-white">
+        <div class="container mx-auto max-w-7xl">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text">
+                Featured Products
+            </h2>
+            <p class="text-xl text-gray-600 text-center mb-20">Discover the best for your pets 🐾</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="group bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-8 shadow-xl hover:shadow-3xl hover:-translate-y-4 transition-all duration-500 border border-white hover:border-orange-200">
+                    <div class="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">🐶</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 text-center">Premium Dog Food</h3>
+                    <p class="text-gray-600 mb-6 text-center">Nutritious & Delicious</p>
+                    <div class="flex items-center justify-center">
+                        <span class="text-3xl font-black text-orange-500">$29.99</span>
+                    </div>
+                </div>
+                <div class="group bg-gradient-to-br from-pink-50 to-rose-100 rounded-3xl p-8 shadow-xl hover:shadow-3xl hover:-translate-y-4 transition-all duration-500 border border-white hover:border-pink-200">
+                    <div class="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">🐱</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 text-center">Cat Toys</h3>
+                    <p class="text-gray-600 mb-6 text-center">Hours of Fun!</p>
+                    <div class="flex items-center justify-center">
+                        <span class="text-3xl font-black text-pink-500">$14.99</span>
+                    </div>
+                </div>
+                <div class="group bg-gradient-to-br from-emerald-50 to-teal-100 rounded-3xl p-8 shadow-xl hover:shadow-3xl hover:-translate-y-4 transition-all duration-500 border border-white hover:border-emerald-200">
+                    <div class="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">🧸</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 text-center">Pet Accessories</h3>
+                    <p class="text-gray-600 mb-6 text-center">Stylish & Durable</p>
+                    <div class="flex items-center justify-center">
+                        <span class="text-3xl font-black text-emerald-500">$19.99</span>
+                    </div>
+                </div>
+                <div class="group bg-gradient-to-br from-purple-50 to-violet-100 rounded-3xl p-8 shadow-xl hover:shadow-3xl hover:-translate-y-4 transition-all duration-500 border border-white hover:border-purple-200">
+                    <div class="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">🛁</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 text-center">Grooming Kits</h3>
+                    <p class="text-gray-600 mb-6 text-center">Spa at Home</p>
+                    <div class="flex items-center justify-center">
+                        <span class="text-3xl font-black text-purple-500">$24.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 bg-gradient-to-br from-teal-100 via-emerald-100 to-blue-100">
+        <div class="container mx-auto max-w-5xl text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 bg-gradient-to-r from-teal-800 to-emerald-700 bg-clip-text">
+                About The Happy Tails
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 mb-16 leading-relaxed max-w-3xl mx-auto">
+                Family-owned since 2020, we're passionate pet lovers dedicated to providing top-quality products and joyful experiences for your furry, feathery, and scaly family members. 🐾❤️
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
+                <div class="text-6xl animate-bounce">🐕</div>
+                <div class="text-6xl animate-bounce animation-delay-500">🐈</div>
+                <div class="text-6xl animate-bounce animation-delay-1000">🐹</div>
+                <div class="text-6xl animate-bounce animation-delay-1500">🐢</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 px-6 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text">
+                Happy Customers
+            </h2>
+            <p class="text-xl text-gray-600 text-center mb-20">Don't take our word for it! 🐶</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-b from-yellow-50 to-orange-100 p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-l-8 border-orange-400">
+                    <p class="text-xl italic mb-6 text-gray-700 leading-relaxed">"The best pet shop! My doggo loves the treats. Super fast service! 🐕✨"</p>
+                    <div class="flex items-center">
+                        <span class="text-2xl text-yellow-400 mr-3">⭐⭐⭐⭐⭐</span>
+                        <span class="font-bold text-gray-800">Sarah K.</span>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-b from-pink-50 to-rose-100 p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-l-8 border-pink-400">
+                    <p class="text-xl italic mb-6 text-gray-700 leading-relaxed">"My cats are obsessed with the toys! Highly recommend for all pet parents. 🐱🎾"</p>
+                    <div class="flex items-center">
+                        <span class="text-2xl text-yellow-400 mr-3">⭐⭐⭐⭐⭐</span>
+                        <span class="font-bold text-gray-800">Mike L.</span>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-b from-emerald-50 to-teal-100 p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-l-8 border-emerald-400">
+                    <p class="text-xl italic mb-6 text-gray-700 leading-relaxed">"Amazing quality grooming kits. My bunny looks fabulous! 🐰🛁"</p>
+                    <div class="flex items-center">
+                        <span class="text-2xl text-yellow-400 mr-3">⭐⭐⭐⭐⭐</span>
+                        <span class="font-bold text-gray-800">Emma W.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 text-white">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 drop-shadow-2xl">
+                Come Visit Us Today! 🏪
+            </h2>
+            <p class="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed">
+                We're here to wag tails and make pets happy!
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/20 backdrop-blur-sm p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all duration-300">
+                    <div class="text-5xl mb-4">📍</div>
+                    <h3 class="text-2xl font-bold mb-2">Address</h3>
+                    <p>123 Happy Street<br>Petville, PV 12345</p>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all duration-300">
+                    <div class="text-5xl mb-4">📧</div>
+                    <h3 class="text-2xl font-bold mb-2">Email</h3>
+                    <p>hello@happytails.com</p>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all duration-300">
+                    <div class="text-5xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-2">Phone</h3>
+                    <p>(555) PAW-TAIL</p>
+                </div>
+            </div>
+            <a href="#" class="inline-block bg-white text-purple-500 px-12 py-6 rounded-3xl text-2xl font-bold shadow-2xl hover:scale-110 hover:shadow-3xl transition-all duration-500 hover:bg-orange-50">
+                Get Directions 🚀
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12 px-6">
+        <div class="container mx-auto text-center max-w-4xl">
+            <div class="text-3xl mb-6 animate-pulse">🐾</div>
+            <p class="text-xl mb-8 opacity-90">&copy; 2026 The Happy Tails. All rights reserved. Made with ❤️ for pets everywhere.</p>
+            <div class="flex flex-wrap justify-center items-center space-x-6 md:space-x-12 text-3xl mb-4">
+                <a href="#" class="hover:scale-110 transition-transform duration-300 hover:text-orange-400">📘</a>
+                <a href="#" class="hover:scale-110 transition-transform duration-300 hover:text-orange-400">🐦</a>
+                <a href="#" class="hover:scale-110 transition-transform duration-300 hover:text-orange-400">📷</a>
+                <a href="#" class="hover:scale-110 transition-transform duration-300 hover:text-orange-400">💌</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/100', 'shadow-xl');
+            } else {
+                nav.classList.remove('bg-white/100', 'shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Happy Tails | Premium Pet Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.0/umd/lucide.min.js"></script>
+    <style>
+        body { font-family: 'Quicksand', sans-serif; }
+        .paw-print { opacity: 0.1; position: absolute; z-index: -1; }
+    </style>
+</head>
+<body class="bg-orange-50 text-gray-800">
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100">
+        <div class="max-w-7-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="dog" class="text-orange-500 w-8 h-8"></i>
+                    <span class="text-2xl font-bold text-orange-600 tracking-tight">The Happy Tails</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 font-medium">
+                    <a href="#" class="hover:text-orange-500 transition">Home</a>
+                    <a href="#services" class="hover:text-orange-500 transition">Services</a>
+                    <a href="#shop" class="hover:text-orange-500 transition">Shop</a>
+                    <a href="#about" class="hover:text-orange-500 transition">About</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="p-2 hover:bg-orange-100 rounded-full transition"><i data-lucide="search"></i></button>
+                    <button class="p-2 hover:bg-orange-100 rounded-full transition relative">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="absolute top-0 right-0 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                    </button>
+                    <button class="md:hidden p-2" id="mobile-menu-btn"><i data-lucide="menu"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10 text-center lg:text-left">
+                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-orange-600 uppercase bg-orange-100 rounded-full">
+                    🐾 Your pet's second favorite place
+                </span>
+                <h1 class="text-5xl lg:text-7xl font-bold leading-tight text-gray-900 mb-6">
+                    Where Every Wag <br/> <span class="text-orange-500 text-shadow">Tells a Story</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0">
+                    Premium food, stylish accessories, and expert grooming services for your furry best friends. Because they deserve nothing but the best.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#shop" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-bold text-lg shadow-lg shadow-orange-200 transition-all transform hover:-translate-y-1">Shop Now</a>
+                    <a href="#services" class="px-8 py-4 bg-white border-2 border-orange-200 hover:border-orange-500 text-gray-700 rounded-2xl font-bold text-lg transition-all">Book Grooming</a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-10 -left-10 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+                <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+                <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=800" alt="Happy Golden Retriever" class="relative rounded-3xl shadow-2xl border-8 border-white transform rotate-2 hover:rotate-0 transition duration-500">
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 bg-white" id="shop">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Shop by Category</h2>
+                    <p class="text-gray-500">Find everything your pet needs</p>
+                </div>
+                <a href="#" class="text-orange-500 font-semibold hover:underline flex items-center gap-1">View all <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="bg-orange-100 rounded-3xl p-8 mb-4 group-hover:bg-orange-200 transition-colors flex justify-center">
+                        <i data-lucide="bone" class="w-12 h-12 text-orange-600"></i>
+                    </div>
+                    <h3 class="text-center font-bold text-lg">Healthy Treats</h3>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="bg-teal-100 rounded-3xl p-8 mb-4 group-hover:bg-teal-200 transition-colors flex justify-center">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 text-teal-600"></i>
+                    </div>
+                    <h3 class="text-center font-bold text-lg">Toys & Fun</h3>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="bg-pink-100 rounded-3xl p-8 mb-4 group-hover:bg-pink-200 transition-colors flex justify-center">
+                        <i data-lucide="home" class="w-12 h-12 text-pink-600"></i>
+                    </div>
+                    <h3 class="text-center font-bold text-lg">Beds & Houses</h3>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="bg-blue-100 rounded-3xl p-8 mb-4 group-hover:bg-blue-200 transition-colors flex justify-center">
+                        <i data-lucide="heart-pulse" class="w-12 h-12 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-center font-bold text-lg">Wellness</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-orange-50" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold mb-4">Our Special Care</h2>
+                <p class="text-gray-600">We offer professional grooming and healthcare services to keep your pets healthy and happy.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 transition-colors">
+                        <i data-lucide="scissors" class="text-orange-600 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Professional Grooming</h3>
+                    <p class="text-gray-500 mb-6">Haircuts, baths, and nail trimming by our certified pet stylists.</p>
+                    <button class="text-orange-500 font-bold hover:gap-2 transition-all flex items-center gap-1">Learn More <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group border-2 border-orange-200">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 transition-colors">
+                        <i data-lucide="stethoscope" class="text-orange-600 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Health Checkups</h3>
+                    <p class="text-gray-500 mb-6">Regular health screenings and vaccinations to ensure a long, happy life.</p>
+                    <button class="text-orange-500 font-bold hover:gap-2 transition-all flex items-center gap-1">Learn More <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 transition-colors">
+                        <i data-lucide="smile" class="text-orange-600 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Pet Training</h3>
+                    <p class="text-gray-500 mb-6">Expert behavioral training for dogs of all ages and breeds.</p>
+                    <button class="text-orange-500 font-bold hover:gap-2 transition-all flex items-center gap-1">Learn More <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-teal-600 rounded-[3rem] p-12 relative overflow-hidden text-center text-white">
+                <i data-lucide="cat" class="absolute -bottom-10 -left-10 w-48 h-48 opacity-20 transform -rotate-12"></i>
+                <div class="relative z-10 max-w-xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Join the Happy Tails Club</h2>
+                    <p class="text-teal-100 mb-8 text-lg">Subscribe to get 15% off your first order and receive weekly pet care tips!</p>
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Your email address" class="flex-1 px-6 py-4 rounded-2xl text-gray-800 focus:outline-none focus:ring-4 ring-teal-400">
+                        <button class="px-8 py-4 bg-orange-500 hover:bg-orange-600 rounded-2xl font-bold transition">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <i data-lucide="dog" class="text-orange-500 w-6 h-6"></i>
+                        <span class="text-xl font-bold text-orange-600">The Happy Tails</span>
+                    </div>
+                    <p class="text-gray-500 leading-relaxed">Making the world a better place for our furry companions, one tail at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4 text-gray-500">
+                        <li><a href="#" class="hover:text-orange-500 transition">Our Story</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Store Locator</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Services</h4>
+                    <ul class="space-y-4 text-gray-500">
+                        <li><a href="#" class="hover:text-orange-500 transition">Grooming</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Veterinary</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Dog Walking</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 The Happy Tails. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Simple Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        mobileBtn.addEventListener('click', () => {
+            alert('Mobile menu clicked! In a real app, this would open a side drawer.');
+        });
+    </script>
+</body>
+</html>

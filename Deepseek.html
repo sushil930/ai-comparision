@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Happy Tails – Pet Shop</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* smooth scrolling & tiny extra love */
+        html {
+            scroll-behavior: smooth;
+        }
+        .hover-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        .bg-paw-pattern {
+            background-color: #fef9e7;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 15c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm20 0c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zM12 32c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm36 0c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zM30 45c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5z' fill='%23fcd5b5' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-paw-pattern">
+
+    <!-- ========== HEADER (with mobile menu) ========== -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-30 border-b border-amber-100">
+        <div class="container mx-auto px-5 md:px-8 py-4 flex justify-between items-center">
+            <!-- logo -->
+            <a href="#" class="flex items-center space-x-2 text-2xl font-bold text-amber-800">
+                <span class="text-4xl">🐾</span>
+                <span class="tracking-tight">The Happy Tails</span>
+            </a>
+
+            <!-- desktop navigation (hidden on mobile) -->
+            <nav class="hidden md:flex space-x-8 text-amber-700 font-medium">
+                <a href="#home" class="hover:text-amber-900 transition-colors">Home</a>
+                <a href="#services" class="hover:text-amber-900 transition-colors">Services</a>
+                <a href="#featured" class="hover:text-amber-900 transition-colors">Featured pets</a>
+                <a href="#testimonials" class="hover:text-amber-900 transition-colors">Stories</a>
+                <a href="#contact" class="hover:text-amber-900 transition-colors">Contact</a>
+            </nav>
+
+            <!-- mobile hamburger button -->
+            <button id="menu-btn" class="block md:hidden text-amber-800 text-3xl focus:outline-none" aria-label="menu">☰</button>
+        </div>
+
+        <!-- mobile menu (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-amber-50/95 backdrop-blur-sm px-5 py-4 border-t border-amber-200 flex flex-col space-y-3 text-base font-medium">
+            <a href="#home" class="mobile-link py-2 text-amber-800 hover:text-amber-600">🏠 Home</a>
+            <a href="#services" class="mobile-link py-2 text-amber-800 hover:text-amber-600">✂️ Services</a>
+            <a href="#featured" class="mobile-link py-2 text-amber-800 hover:text-amber-600">🐶 Featured pets</a>
+            <a href="#testimonials" class="mobile-link py-2 text-amber-800 hover:text-amber-600">💬 Stories</a>
+            <a href="#contact" class="mobile-link py-2 text-amber-800 hover:text-amber-600">📞 Contact</a>
+        </div>
+    </header>
+
+    <main class="overflow-hidden">
+        <!-- ========== HERO section ========== -->
+        <section id="home" class="relative container mx-auto px-5 md:px-8 pt-10 pb-16 md:pt-16 md:pb-24 flex flex-col md:flex-row items-center gap-12">
+            <!-- left text -->
+            <div class="flex-1 text-center md:text-left">
+                <span class="inline-block bg-amber-200 text-amber-800 text-sm font-semibold px-4 py-1 rounded-full mb-6">🐕‍🦺 happy & healthy since 2015</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight">
+                    Where <span class="text-amber-600">pets</span> are <br>family ❤️
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mt-6 max-w-xl mx-auto md:mx-0">
+                    Premium food, cozy accessories & expert grooming – everything your furry friend deserves.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#services" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-8 py-4 rounded-full shadow-md hover:shadow-xl transition flex items-center gap-2">Explore services 🦴</a>
+                    <a href="#contact" class="bg-white border-2 border-amber-300 hover:border-amber-500 text-amber-700 font-semibold px-8 py-4 rounded-full shadow-sm hover:shadow-md transition">Visit us 📍</a>
+                </div>
+                <!-- cute paw stats -->
+                <div class="flex justify-center md:justify-start gap-6 mt-10 text-amber-700">
+                    <div class="text-center"><span class="font-black text-2xl">5k+</span> <span class="block text-sm">happy clients</span></div>
+                    <div class="text-center"><span class="font-black text-2xl">200+</span> <span class="block text-sm">products</span></div>
+                    <div class="text-center"><span class="font-black text-2xl">24/7</span> <span class="block text-sm">online support</span></div>
+                </div>
+            </div>
+            <!-- right hero image (collage style) -->
+            <div class="flex-1 grid grid-cols-2 gap-4 max-w-lg mx-auto">
+                <img src="https://placedog.net/300/300?random=1" alt="cute dog" class="rounded-3xl shadow-xl object-cover w-full h-48 md:h-56 lg:h-64 hover:scale-105 transition-transform duration-300">
+                <img src="https://placekitten.com/300/300?random=2" alt="cute kitten" class="rounded-3xl shadow-xl object-cover w-full h-48 md:h-56 lg:h-64 mt-8 hover:scale-105 transition-transform duration-300">
+                <img src="https://placedog.net/300/300?random=3" alt="happy puppy" class="rounded-3xl shadow-xl object-cover w-full h-48 md:h-56 lg:h-64 -mt-4 hover:scale-105 transition-transform duration-300">
+                <img src="https://placekitten.com/300/300?random=4" alt="curious cat" class="rounded-3xl shadow-xl object-cover w-full h-48 md:h-56 lg:h-64 hover:scale-105 transition-transform duration-300">
+            </div>
+        </section>
+
+        <!-- ========== SERVICES section (trendy cards) ========== -->
+        <section id="services" class="bg-white/50 backdrop-blur-sm py-20">
+            <div class="container mx-auto px-5 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-amber-500 font-semibold tracking-wider text-sm">WHAT WE OFFER</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2 text-gray-800">Pamper your companion 🛁</h2>
+                    <p class="text-gray-600 mt-3">From spa days to gourmet treats – we've got tails wagging.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+                    <!-- service 1 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-md hover-lift border border-amber-100 flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mb-4">✂️</div>
+                        <h3 class="font-bold text-xl mb-2">Grooming salon</h3>
+                        <p class="text-gray-500 text-sm">Baths, haircuts, nail trims – gentle & stress‑free.</p>
+                        <span class="mt-4 text-amber-600 font-medium">from $25</span>
+                    </div>
+                    <!-- service 2 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-md hover-lift border border-amber-100 flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mb-4">🥩</div>
+                        <h3 class="font-bold text-xl mb-2">Premium nutrition</h3>
+                        <p class="text-gray-500 text-sm">Grain‑free, organic & vet‑approved brands.</p>
+                        <span class="mt-4 text-amber-600 font-medium">shop now</span>
+                    </div>
+                    <!-- service 3 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-md hover-lift border border-amber-100 flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mb-4">🧸</div>
+                        <h3 class="font-bold text-xl mb-2">Toy box</h3>
+                        <p class="text-gray-500 text-sm">Eco‑friendly plushies, chew toys & puzzles.</p>
+                        <span class="mt-4 text-amber-600 font-medium">new arrivals</span>
+                    </div>
+                    <!-- service 4 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-md hover-lift border border-amber-100 flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mb-4">💊</div>
+                        <h3 class="font-bold text-xl mb-2">Health & wellness</h3>
+                        <p class="text-gray-500 text-sm">Vitamins, flea control & dental care.</p>
+                        <span class="mt-4 text-amber-600 font-medium">consult</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FEATURED PETS (adoption / stars) ========== -->
+        <section id="featured" class="py-20 bg-gradient-to-b from-amber-50 to-white">
+            <div class="container mx-auto px-5 md:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">🐕 meet our furry friends</h2>
+                    <p class="text-gray-600 max-w-xl mx-auto">These cuties are looking for a forever home – or just some extra treats!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- pet card 1 -->
+                    <div class="bg-white rounded-4xl shadow-xl overflow-hidden hover-lift">
+                        <img src="https://placedog.net/400/300?random=5" alt="golden retriever" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-bold text-2xl">Bailey</h3>
+                                <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">friendly</span>
+                            </div>
+                            <p class="text-gray-500">Golden Retriever · 2 years</p>
+                            <div class="flex items-center mt-3 text-amber-500">★★★★★ <span class="text-gray-400 ml-2">(34 reviews)</span></div>
+                            <button class="mt-5 w-full bg-amber-100 hover:bg-amber-200 text-amber-800 font-semibold py-3 rounded-full transition">Adopt Bailey</button>
+                        </div>
+                    </div>
+                    <!-- pet card 2 -->
+                    <div class="bg-white rounded-4xl shadow-xl overflow-hidden hover-lift">
+                        <img src="https://placekitten.com/400/300?random=6" alt="tabby cat" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-bold text-2xl">Luna</h3>
+                                <span class="bg-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full">playful</span>
+                            </div>
+                            <p class="text-gray-500">Domestic Shorthair · 1 year</p>
+                            <div class="flex items-center mt-3 text-amber-500">★★★★☆ <span class="text-gray-400 ml-2">(27 reviews)</span></div>
+                            <button class="mt-5 w-full bg-amber-100 hover:bg-amber-200 text-amber-800 font-semibold py-3 rounded-full transition">Adopt Luna</button>
+                        </div>
+                    </div>
+                    <!-- pet card 3 -->
+                    <div class="bg-white rounded-4xl shadow-xl overflow-hidden hover-lift">
+                        <img src="https://placedog.net/400/300?random=7" alt="corgi" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-bold text-2xl">Cooper</h3>
+                                <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full">energetic</span>
+                            </div>
+                            <p class="text-gray-500">Corgi · 3 years</p>
+                            <div class="flex items-center mt-3 text-amber-500">★★★★★ <span class="text-gray-400 ml-2">(52 reviews)</span></div>
+                            <button class="mt-5 w-full bg-amber-100 hover:bg-amber-200 text-amber-800 font-semibold py-3 rounded-full transition">Adopt Cooper</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-semibold px-10 py-4 rounded-full shadow-md">View all 🐾</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== TESTIMONIALS (love from pet parents) ========== -->
+        <section id="testimonials" class="py-20 bg-white/80">
+            <div class="container mx-auto px-5 md:px-8">
+                <div class="flex flex-col md:flex-row gap-10 items-center">
+                    <!-- left quote -->
+                    <div class="md:w-1/3 text-center md:text-left">
+                        <span class="text-amber-400 text-7xl font-serif">“</span>
+                        <h2 class="text-3xl md:text-4xl font-bold leading-tight mt-2">What pet parents <br>are saying</h2>
+                        <p class="text-gray-500 mt-4">Join thousands of happy tails.</p>
+                    </div>
+                    <!-- right testimonials grid -->
+                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-amber-50 p-6 rounded-3xl shadow-sm border border-amber-200">
+                            <div class="flex items-center gap-2 text-amber-500 mb-3">★★★★★</div>
+                            <p class="text-gray-700 italic">“The grooming team is magic! My anxious poodle came out looking like a superstar and so calm.”</p>
+                            <div class="flex items-center gap-3 mt-5">
+                                <img src="https://placekitten.com/60/60?random=8" alt="avatar" class="w-10 h-10 rounded-full object-cover">
+                                <div><strong>— Olivia R.</strong> <span class="text-xs text-gray-400 block">poodle mom</span></div>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 p-6 rounded-3xl shadow-sm border border-amber-200">
+                            <div class="flex items-center gap-2 text-amber-500 mb-3">★★★★★</div>
+                            <p class="text-gray-700 italic">“Best quality food! My cats are picky but they go crazy for the salmon recipe. Fast delivery too.”</p>
+                            <div class="flex items-center gap-3 mt-5">
+                                <img src="https://placedog.net/60/60?random=9" alt="avatar" class="w-10 h-10 rounded-full object-cover">
+                                <div><strong>— Marcus L.</strong> <span class="text-xs text-gray-400 block">cat dad</span></div>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 p-6 rounded-3xl shadow-sm border border-amber-200 sm:col-span-2 md:col-span-1">
+                            <div class="flex items-center gap-2 text-amber-500 mb-3">★★★★★</div>
+                            <p class="text-gray-700 italic">“The Happy Tails team helped me choose the perfect harness for my bulldog. Fits like a dream!”</p>
+                            <div class="flex items-center gap-3 mt-5">
+                                <img src="https://placekitten.com/60/60?random=10" alt="avatar" class="w-10 h-10 rounded-full object-cover">
+                                <div><strong>— Jenna K.</strong> <span class="text-xs text-gray-400 block">bulldog lover</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== NEWSLETTER & CONTACT ========== -->
+        <section id="contact" class="py-20 bg-amber-800 text-amber-50">
+            <div class="container mx-auto px-5 md:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">✨ Stay in the loop</h2>
+                <p class="text-amber-200 max-w-xl mx-auto">Get exclusive offers, pet care tips, and adorable photos – straight to your inbox.</p>
+                
+                <form class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="your@email.com" class="flex-1 px-6 py-4 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-amber-300">
+                    <button class="bg-amber-500 hover:bg-amber-400 text-amber-900 font-bold px-8 py-4 rounded-full shadow-lg transition">Subscribe 🐶</button>
+                </form>
+
+                <!-- contact quick info -->
+                <div class="flex flex-wrap justify-center gap-8 mt-16 text-amber-100">
+                    <div class="flex items-center gap-2">📍 123 Wagging Tail Lane, Pawville</div>
+                    <div class="flex items-center gap-2">📞 +1 (555) 456-7890</div>
+                    <div class="flex items-center gap-2">⏰ Mon–Sat 9am – 8pm</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-amber-900 text-amber-300 py-6 text-sm">
+        <div class="container mx-auto px-5 flex flex-col md:flex-row justify-between items-center">
+            <p>© 2025 The Happy Tails — where every tail wags 🐕</p>
+            <div class="flex gap-5 mt-3 md:mt-0">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">Facebook</a>
+                <a href="#" class="hover:text-white transition">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JavaScript for mobile menu ========== -->
+    <script>
+        (function() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu(force) {
+                mobileMenu.classList.toggle('hidden', force);
+            }
+
+            // open/close on button click
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            // close menu when a mobile link is clicked (smooth scroll)
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu(true); // force hidden
+                });
+            });
+
+            // optional: close on resize if screen becomes md and menu might be open
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) { // 768px is md breakpoint in tailwind
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMenu(true);
+                    }
+                }
+            });
+        })();
+    </script>
+
+    <!-- tiny extra style for rounded-4xl (not in tailwind by default) -->
+    <style>
+        .rounded-4xl {
+            border-radius: 2rem;
+        }
+    </style>
+</body>
+</html>

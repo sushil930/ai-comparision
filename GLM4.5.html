@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Happy Tails - Premium Pet Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['DM Serif Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            cream: '#FDF8F3',
+            sand: '#F5EBE0',
+            terracotta: '#C4705A',
+            terracottaDark: '#A85A45',
+            sage: '#7D9B84',
+            charcoal: '#2D2A26',
+            warm: '#8B7355',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #FDF8F3;
+      --fg: #2D2A26;
+      --muted: #8B7355;
+      --accent: #C4705A;
+      --accent-dark: #A85A45;
+      --card: #FFFFFF;
+      --border: #E8DDD4;
+      --sage: #7D9B84;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+    }
+
+    .font-display {
+      font-family: 'DM Serif Display', serif;
+    }
+
+    /* Paw pattern background */
+    .paw-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C4705A' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Organic blob shapes */
+    .blob-1 {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    .blob-2 {
+      border-radius: 30% 70% 70% 30% / 30% 52% 48% 70%;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-3deg); }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scale-in {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes paw-bounce {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(-5deg); }
+      75% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-reverse {
+      animation: float-reverse 5s ease-in-out infinite;
+    }
+
+    .animate-fade-up {
+      animation: fade-up 0.8s ease-out forwards;
+    }
+
+    .animate-scale-in {
+      animation: scale-in 0.6s ease-out forwards;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger-children > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stagger-children.active > *:nth-child(1) { transition-delay: 0.1s; }
+    .stagger-children.active > *:nth-child(2) { transition-delay: 0.2s; }
+    .stagger-children.active > *:nth-child(3) { transition-delay: 0.3s; }
+    .stagger-children.active > *:nth-child(4) { transition-delay: 0.4s; }
+    .stagger-children.active > *:nth-child(5) { transition-delay: 0.5s; }
+    .stagger-children.active > *:nth-child(6) { transition-delay: 0.6s; }
+
+    .stagger-children.active > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Product card hover */
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-card .product-image {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Button styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px var(--accent);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* Focus states */
+    .focus-ring:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Nav link underline animation */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FDF8F3 100%);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/80 backdrop-blur-md border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 focus-ring rounded-lg">
+          <svg class="w-8 h-8 text-terracotta" viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 4c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-8 2c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3zm16 0c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3zm-12 8c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm8 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-4 4c-3.3 0-6 2.7-6 6v2h12v-2c0-3.3-2.7-6-6-6z"/>
+          </svg>
+          <span class="font-display text-xl text-charcoal">The Happy Tails</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#products" class="nav-link text-charcoal/80 hover:text-charcoal font-medium focus-ring rounded">Shop</a>
+          <a href="#services" class="nav-link text-charcoal/80 hover:text-charcoal font-medium focus-ring rounded">Services</a>
+          <a href="#about" class="nav-link text-charcoal/80 hover:text-charcoal font-medium focus-ring rounded">About</a>
+          <a href="#contact" class="nav-link text-charcoal/80 hover:text-charcoal font-medium focus-ring rounded">Contact</a>
+        </div>
+
+        <!-- CTA & Cart -->
+        <div class="flex items-center gap-4">
+          <button class="relative p-2 text-charcoal hover:text-terracotta transition-colors focus-ring rounded-lg" aria-label="Shopping cart">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span class="absolute -top-1 -right-1 w-5 h-5 bg-terracotta text-white text-xs rounded-full flex items-center justify-center font-semibold">3</span>
+          </button>
+          <a href="#contact" class="hidden sm:inline-flex btn-primary text-white px-5 py-2.5 rounded-full font-semibold focus-ring">
+            Visit Us
+          </a>
+          
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-charcoal focus-ring rounded-lg" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-border">
+      <div class="px-4 py-4 space-y-3">
+        <a href="#products" class="block py-2 text-charcoal font-medium focus-ring rounded">Shop</a>
+        <a href="#services" class="block py-2 text-charcoal font-medium focus-ring rounded">Services</a>
+        <a href="#about" class="block py-2 text-charcoal font-medium focus-ring rounded">About</a>
+        <a href="#contact" class="block py-2 text-charcoal font-medium focus-ring rounded">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen pt-20 md:pt-0 flex items-center overflow-hidden paw-pattern">
+    <!-- Decorative blobs -->
+    <div class="absolute top-20 -right-20 w-96 h-96 bg-terracotta/10 blob-1 animate-float"></div>
+    <div class="absolute bottom-20 -left-20 w-80 h-80 bg-sage/20 blob-2 animate-float-reverse"></div>
+    <div class="absolute top-1/3 left-1/4 w-4 h-4 bg-terracotta/30 rounded-full animate-float"></div>
+    <div class="absolute top-1/2 right-1/3 w-3 h-3 bg-sage/40 rounded-full animate-float-reverse"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Hero Content -->
+        <div class="order-2 lg:order-1 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-sand px-4 py-2 rounded-full mb-6 animate-fade-up">
+            <span class="w-2 h-2 bg-sage rounded-full"></span>
+            <span class="text-sm font-medium text-warm">Premium Pet Supplies Since 2015</span>
+          </div>
+          
+          <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-charcoal leading-tight mb-6 animate-fade-up" style="animation-delay: 0.1s">
+            Everything Your
+            <span class="relative inline-block">
+              <span class="relative z-10">Furry Friend</span>
+              <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
+                <path d="M2 8c40-6 80-6 120-2s56 6 76 2" stroke="#C4705A" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+              </svg>
+            </span>
+            Deserves
+          </h1>
+          
+          <p class="text-lg md:text-xl text-warm max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-up" style="animation-delay: 0.2s">
+            From premium nutrition to cozy beds and playful toys, we curate the finest products for your beloved companions. Because they're family.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up" style="animation-delay: 0.3s">
+            <a href="#products" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg focus-ring inline-flex items-center justify-center gap-2">
+              Shop Now
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+            <a href="#about" class="px-8 py-4 rounded-full font-semibold text-lg text-charcoal border-2 border-charcoal/20 hover:border-terracotta hover:text-terracotta transition-colors focus-ring inline-flex items-center justify-center gap-2">
+              Our Story
+            </a>
+          </div>
+
+          <!-- Trust badges -->
+          <div class="flex items-center gap-6 mt-10 justify-center lg:justify-start animate-fade-up" style="animation-delay: 0.4s">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-sage" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sm font-medium text-charcoal">Vet Approved</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-sage" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sm font-medium text-charcoal">Natural Products</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="order-1 lg:order-2 relative animate-scale-in">
+          <div class="relative z-10">
+            <img 
+              src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=700&fit=crop&crop=faces" 
+              alt="Happy golden retriever dog with a warm smile" 
+              class="w-full max-w-lg mx-auto rounded-3xl shadow-2xl shadow-terracotta/20 object-cover aspect-[4/5]"
+            >
+            <!-- Floating card -->
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl animate-float hidden sm:block">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center">
+                  <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-charcoal">5,000+</p>
+                  <p class="text-sm text-warm">Happy Pets</p>
+                </div>
+              </div>
+            </div>
+            <!-- Rating card -->
+            <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float-reverse hidden sm:block">
+              <div class="flex items-center gap-1 mb-1">
+                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <p class="text-sm font-medium text-charcoal">4.9 Rating</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="py-20 bg-sand/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-display text-3xl md:text-4xl text-charcoal mb-4">Shop by Pet</h2>
+        <p class="text-warm text-lg max-w-2xl mx-auto">Find the perfect products for your specific companion</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 stagger-children" id="categories">
+        <!-- Category Cards -->
+        <button class="group bg-white rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 focus-ring">
+          <div class="w-20 h-20 mx-auto mb-4 bg-terracotta/10 rounded-2xl flex items-center justify-center group-hover:bg-terracotta/20 transition-colors">
+            <svg class="w-10 h-10 text-terracotta" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 4c-1.5 0-2.5 1-2.5 1s-1-1-2.5-1c-2 0-3.5 1.5-3.5 3.5 0 3 3.5 5.5 6 8.5 2.5-3 6-5.5 6-8.5 0-2-1.5-3.5-3.5-3.5zm-12 2c-1.5 0-2.5 1-2.5 1s-1-1-2.5-1C1 6 0 7 0 8.5c0 2 2 3.5 4 5.5 2-2 4-3.5 4-5.5C8 7 7 6 6 6zm0 8c-1.5 0-2.5 1-2.5 1s-1-1-2.5-1c-1.5 0-2.5 1-2.5 2.5 0 2 2 3.5 4 5.5 2-2 4-3.5 4-5.5 0-1.5-1-2.5-2.5-2.5z" transform="translate(3, 2) scale(0.8)"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-charcoal text-lg mb-1">Dogs</h3>
+          <p class="text-sm text-warm">245 Products</p>
+        </button>
+
+        <button class="group bg-white rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 focus-ring">
+          <div class="w-20 h-20 mx-auto mb-4 bg-sage/20 rounded-2xl flex items-center justify-center group-hover:bg-sage/30 transition-colors">
+            <svg class="w-10 h-10 text-sage" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 3c1.5 0 2.5 1.5 2.5 3S13.5 11 12 11s-2.5-1.5-2.5-3S10.5 5 12 5zm-4 5c1 0 1.5.5 1.5 1S9 12.5 8 12.5 6.5 12 6.5 11.5 7 10 8 10zm8 0c1 0 1.5.5 1.5 1s-.5 1.5-1.5 1.5-1.5-.5-1.5-1 .5-1.5 1.5-1.5zM12 19c-2 0-3.5-1-4.5-2.5.5-1.5 2.5-2.5 4.5-2.5s4 1 4.5 2.5C15.5 18 14 19 12 19z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-charcoal text-lg mb-1">Cats</h3>
+          <p class="text-sm text-warm">189 Products</p>
+        </button>
+
+        <button class="group bg-white rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 focus-ring">
+          <div class="w-20 h-20 mx-auto mb-4 bg-yellow-100 rounded-2xl flex items-center justify-center group-hover:bg-yellow-200 transition-colors">
+            <svg class="w-10 h-10 text-yellow-600" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3c-1.5 0-3 1.5-3 3.5 0 1 .5 2 1 2.5-2 .5-4 2-4 5 0 4 3 7 6 7s6-3 6-7c0-3-2-4.5-4-5 .5-.5 1-1.5 1-2.5 0-2-1.5-3.5-3-3.5z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-charcoal text-lg mb-1">Birds</h3>
+          <p class="text-sm text-warm">78 Products</p>
+        </button>
+
+        <button class="group bg-white rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 focus-ring">
+          <div class="w-20 h-20 mx-auto mb-4 bg-blue-100 rounded-2xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+            <svg class="w-10 h-10 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+              <ellipse cx="12" cy="14" rx="8" ry="6"/>
+              <circle cx="8" cy="6" r="3"/>
+              <circle cx="16" cy="6" r="3"/>
+              <circle cx="4" cy="10" r="2"/>
+              <circle cx="20" cy="10" r="2"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-charcoal text-lg mb-1">Small Pets</h3>
+          <p class="text-sm text-warm">134 Products</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section id="products" class="py-20 paw-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 reveal">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl text-charcoal mb-4">Best Sellers</h2>
+          <p class="text-warm text-lg">Loved by pets, trusted by parents</p>
+        </div>
+        <div class="flex gap-2 mt-6 md:mt-0" role="tablist" aria-label="Product filters">
+          <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium bg-terracotta text-white focus-ring" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-charcoal hover:bg-sand transition-colors focus-ring" data-filter="food" role="tab" aria-selected="false">Food</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-charcoal hover:bg-sand transition-colors focus-ring" data-filter="toys" role="tab" aria-selected="false">Toys</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-charcoal hover:bg-sand transition-colors focus-ring" data-filter="accessories" role="tab" aria-selected="false">Accessories</button>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children" id="products-grid">
+        <!-- Products will be rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-charcoal text-white relative overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-terracotta/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-sage/10 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">More Than Just a Shop</h2>
+        <p class="text-white/70 text-lg max-w-2xl mx-auto">We offer comprehensive services to keep your pets happy and healthy</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 stagger-children">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
+          <div class="w-14 h-14 bg-terracotta rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3">Pet Grooming</h3>
+          <p class="text-white/70 mb-4">Professional grooming services including bathing, haircuts, nail trimming, and spa treatments.</p>
+          <p class="text-terracotta font-semibold">From $35</p>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
+          <div class="w-14 h-14 bg-sage rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3">Pet Nutrition</h3>
+          <p class="text-white/70 mb-4">Expert consultation on diet plans, weight management, and specialized nutrition for your pet's needs.</p>
+          <p class="text-sage font-semibold">Free Consultation</p>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
+          <div class="w-14 h-14 bg-yellow-500 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3">Pet Boarding</h3>
+          <p class="text-white/70 mb-4">Safe and comfortable boarding facilities with 24/7 care when you need to be away.</p>
+          <p class="text-yellow-500 font-semibold">From $45/night</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-sand/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-display text-3xl md:text-4xl text-charcoal mb-4">What Pet Parents Say</h2>
+        <p class="text-warm text-lg">Join thousands of happy customers</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 stagger-children">
+        <div class="testimonial-card bg-white rounded-3xl p-8 shadow-sm">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-charcoal/80 mb-6 leading-relaxed">"The grooming service here is exceptional! My golden retriever Max always comes back looking and smelling amazing. The staff truly cares about the animals."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="Sarah M." class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <p class="font-semibold text-charcoal">Sarah M.</p>
+              <p class="text-sm text-warm">Dog Parent</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white rounded-3xl p-8 shadow-sm">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-charcoal/80 mb-6 leading-relaxed">"Finally found a pet shop that carries high-quality organic food for my sensitive cat. The nutrition consultation helped so much with her dietary issues."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="James K." class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <p class="font-semibold text-charcoal">James K.</p>
+              <p class="text-sm text-warm">Cat Parent</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white rounded-3xl p-8 shadow-sm">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-charcoal/80 mb-6 leading-relaxed">"The boarding service gave me peace of mind during my vacation. They sent daily updates and photos. My bunny was so well taken care of!"</p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces" alt="Emily R." class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <p class="font-semibold text-charcoal">Emily R.</p>
+              <p class="text-sm text-warm">Bunny Parent</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="relative reveal">
+          <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=500&fit=crop" alt="Inside The Happy Tails pet shop" class="rounded-3xl shadow-xl w-full object-cover aspect-[4/3]">
+          <div class="absolute -bottom-6 -right-6 bg-terracotta text-white p-6 rounded-2xl shadow-lg hidden md:block">
+            <p class="font-display text-3xl">9+</p>
+            <p class="text-white/80 text-sm">Years of Love</p>
+          </div>
+        </div>
+        
+        <div class="reveal">
+          <span class="inline-block text-terracotta font-semibold mb-4">Our Story</span>
+          <h2 class="font-display text-3xl md:text-4xl text-charcoal mb-6">Born From Love For Pets</h2>
+          <p class="text-warm text-lg leading-relaxed mb-6">
+            The Happy Tails started in 2015 when our founder, a passionate veterinarian, noticed a gap in quality pet products. What began as a small corner shop has grown into a beloved destination for pet parents seeking premium, vet-approved products and services.
+          </p>
+          <p class="text-warm text-lg leading-relaxed mb-8">
+            We believe every pet deserves the best. That's why we carefully curate our selection, partner with ethical suppliers, and employ staff who share our passion for animal welfare.
+          </p>
+          
+          <div class="grid grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-display text-3xl text-terracotta">5K+</p>
+              <p class="text-sm text-warm">Happy Pets</p>
+            </div>
+            <div class="text-center">
+              <p class="font-display text-3xl text-terracotta">646</p>
+              <p class="text-sm text-warm">Products</p>
+            </div>
+            <div class="text-center">
+              <p class="font-display text-3xl text-terracotta">12</p>
+              <p class="text-sm text-warm">Experts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section id="contact" class="py-20 bg-gradient-to-br from-terracotta/5 via-cream to-sage/5">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <div class="w-16 h-16 bg-terracotta/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <h2 class="font-display text-3xl md:text-4xl text-charcoal mb-4">Stay in the Loop</h2>
+      <p class="text-warm text-lg mb-8">Get exclusive offers, pet care tips, and new product alerts delivered to your inbox.</p>
+      
+      <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+        <input 
+          type="email" 
+          placeholder="Enter your email" 
+          required
+          class="flex-1 px-6 py-4 rounded-full border-2 border-border bg-white focus:border-terracotta focus:outline-none transition-colors"
+          aria-label="Email address"
+        >
+        <button type="submit" class="btn-primary text-white px-8 py-4 rounded-full font-semibold focus-ring whitespace-nowrap">
+          Subscribe
+        </button>
+      </form>
+      <p class="text-sm text-warm/60 mt-4">No spam, unsubscribe anytime. We respect your privacy.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-charcoal text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <svg class="w-8 h-8 text-terracotta" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 4c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-8 2c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3zm16 0c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3zm-12 8c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm8 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-4 4c-3.3 0-6 2.7-6 6v2h12v-2c0-3.3-2.7-6-6-6z"/>
+            </svg>
+            <span class="font-display text-xl">The Happy Tails</span>
+          </div>
+          <p class="text-white/60 text-sm leading-relaxed">Premium pet supplies and services for your beloved companions. Because they deserve the best.</p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Shop</h4>
+          <ul class="space-y-2 text-white/60 text-sm">
+            <li><a href="#" class="hover:text-terracotta transition-colors">Dogs</a></li>
+            <li><a href="#" class="hover:text-terracotta transition-colors">Cats</a></li>
+            <li><a href="#" class="hover:text-terracotta transition-colors">Birds</a></li>
+            <li><a href="#" class="hover:text-terracotta transition-colors">Small Pets</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <ul class="space-y-2 text-white/60 text-sm">
+            <li><a href="#" class="hover:text-terracotta transition-colors">Grooming</a></li>
+            <li><a href="#" class="hover:text-terracotta transition-colors">Nutrition Consult</a></li>
+            <li><a href="#" class="hover:text-terracotta transition-colors">Pet Boarding</a></li>
+            <li><a href="#" class="hover:text-terracotta transition-colors">Training</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Visit Us</h4>
+          <address class="not-italic text-white/60 text-sm space-y-2">
+            <p>123 Pet Street, Pawsville</p>
+            <p>CA 90210, United States</p>
+            <p class="pt-2">Mon-Sat: 9AM - 8PM</p>
+            <p>Sun: 10AM - 6PM</p>
+            <p class="pt-2 text-terracotta">(555) 123-4567</p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/40 text-sm">2025 The Happy Tails. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-10 h-10 bg-white/5 hover:bg-terracotta rounded-full flex items-center justify-center transition-colors focus-ring" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 bg-white/5 hover:bg-terracotta rounded-full flex items-center justify-center transition-colors focus-ring" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 bg-white/5 hover:bg-terracotta rounded-full flex items-center justify-center transition-colors focus-ring" aria-label="Twitter">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Product Data
+    const products = [
+      { id: 1, name: 'Organic Dog Food', category: 'food', price: 45.99, originalPrice: 54.99, image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400&h=400&fit=crop', badge: 'Best Seller' },
+      { id: 2, name: 'Interactive Puzzle Toy', category: 'toys', price: 24.99, image: 'https://images.unsplash.com/photo-1535294435445-d7249524ef2e?w=400&h=400&fit=crop', badge: null },
+      { id: 3, name: 'Cozy Pet Bed', category: 'accessories', price: 89.99, originalPrice: 110.00, image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=400&fit=crop', badge: 'Sale' },
+      { id: 4, name: 'Premium Cat Treats', category: 'food', price: 18.99, image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop', badge: null },
+      { id: 5, name: 'Squeaky Bone Toy', category: 'toys', price: 12.99, image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=400&fit=crop', badge: 'New' },
+      { id: 6, name: 'Adjustable Collar', category: 'accessories', price: 29.99, image: 'https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?w=400&h=400&fit=crop', badge: null },
+      { id: 7, name: 'Salmon Dog Treats', category: 'food', price: 22.99, image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop', badge: null },
+      { id: 8, name: 'Cat Scratching Post', category: 'accessories', price: 49.99, originalPrice: 65.00, image: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400&h=400&fit=crop', badge: 'Sale' },
+    ];
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts('all');
+      initScrollReveal();
+      initMobileMenu();
+      initFilterButtons();
+      initNewsletterForm();
+    });
+
+    // Render Products
+    function renderProducts(filter) {
+      const grid = document.getElementById('products-grid');
+      const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+      
+      grid.innerHTML = filtered.map(product => `
+        <article class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl group">
+          <div class="relative overflow-hidden">
+            <img src="${product.image}" alt="${product.name}" class="product-image w-full aspect-square object-cover">
+            ${product.badge ? `<span class="absolute top-4 left-4 px-3 py-1 text-xs font-semibold rounded-full ${
+              product.badge === 'Sale' ? 'bg-terracotta text-white' : 
+              product.badge === 'New' ? 'bg-sage text-white' : 'bg-charcoal text-white'
+            }">${product.badge}</span>` : ''}
+            <button class="absolute bottom-4 right-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-terracotta hover:text-white focus-ring" aria-label="Add to cart">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold text-charcoal mb-2">${product.name}</h3>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-terracotta text-lg">$${product.price.toFixed(2)}</span>
+              ${product.originalPrice ? `<span class="text-sm text-warm line-through">$${product.originalPrice.toFixed(2)}</span>` : ''}
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      // Re-trigger animation
+      setTimeout(() => {
+        grid.classList.add('active');
+      }, 50);
+    }
+
+    // Scroll Reveal
+    function initScrollReveal() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            
+            // Handle stagger children
+            if (entry.target.classList.contains('stagger-children')) {
+              entry.target.classList.add('active');
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal, .stagger-children').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Mobile Menu
+    function initMobileMenu() {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      
+      btn.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', !isOpen);
+      });
+
+      // Close on link click
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Filter Buttons
+    function initFilterButtons() {
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => {
+            b.classList.remove('active', 'bg-terracotta', 'text-white');
+            b.classList.add('bg-white', 'text-charcoal');
+            b.setAttribute('aria-selected', 'false');
+          });
+          
+          btn.classList.add('active', 'bg-terracotta', 'text-white');
+          btn.classList.remove('bg-white', 'text-charcoal');
+          btn.setAttribute('aria-selected', 'true');
+          
+          const grid = document.getElementById('products-grid');
+          grid.classList.remove('active');
+          
+          setTimeout(() => {
+            renderProducts(btn.dataset.filter);
+          }, 200);
+        });
+      });
+    }
+
+    // Newsletter Form
+    function initNewsletterForm() {
+      const form = document.getElementById('newsletter-form');
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = form.querySelector('input');
+        const button = form.querySelector('button');
+        
+        button.textContent = 'Subscribed!';
+        button.classList.remove('btn-primary');
+        button.classList.add('bg-sage', 'text-white');
+        input.value = '';
+        
+        setTimeout(() => {
+          button.textContent = 'Subscribe';
+          button.classList.add('btn-primary');
+          button.classList.remove('bg-sage', 'text-white');
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>

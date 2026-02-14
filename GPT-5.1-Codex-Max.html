@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>The Happy Tails | Pet Shop & Wellness</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					fontFamily: { sans: ['Manrope', 'system-ui', 'sans-serif'] },
+					colors: {
+						brand: {
+							50: '#fdf7f3',
+							100: '#ffefe3',
+							200: '#ffd7b8',
+							300: '#ffbe8c',
+							400: '#ffa45f',
+							500: '#ff9241',
+							600: '#f36f16',
+							700: '#c6540b',
+							800: '#8a3c0c',
+							900: '#4d2206'
+						},
+						leaf: '#0f766e',
+						dusk: '#0b162b'
+					},
+					boxShadow: {
+						soft: '0 10px 40px rgba(0,0,0,0.08)'
+					}
+				}
+			}
+		};
+	</script>
+	<style>
+		body { font-family: 'Manrope', system-ui, sans-serif; background: radial-gradient(circle at 20% 20%, rgba(255, 182, 135, 0.18), transparent 30%), radial-gradient(circle at 80% 0%, rgba(15, 118, 110, 0.16), transparent 28%), #0b162b; }
+	</style>
+</head>
+<body class="text-slate-100">
+	<div class="min-h-screen bg-gradient-to-b from-dusk/60 via-dusk/40 to-dusk/60">
+		<header class="sticky top-0 z-20 backdrop-blur-lg bg-dusk/70 border-b border-white/10">
+			<div class="max-w-6xl mx-auto px-4 lg:px-8">
+				<div class="flex items-center justify-between py-4">
+					<div class="flex items-center gap-3">
+						<div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-400 to-leaf flex items-center justify-center shadow-soft">
+							<span class="text-2xl">🐾</span>
+						</div>
+						<div>
+							<p class="text-sm uppercase tracking-[0.2em] text-brand-200">Pet Shop</p>
+							<p class="text-xl font-semibold text-white">The Happy Tails</p>
+						</div>
+					</div>
+					<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
+						<a href="#pets" class="hover:text-brand-200 transition">Featured Pets</a>
+						<a href="#services" class="hover:text-brand-200 transition">Services</a>
+						<a href="#wellness" class="hover:text-brand-200 transition">Wellness</a>
+						<a href="#contact" class="hover:text-brand-200 transition">Visit Us</a>
+					</nav>
+					<div class="hidden md:flex items-center gap-3">
+						<button class="px-4 py-2 text-sm font-semibold text-brand-50 border border-white/15 rounded-full hover:border-brand-200/80 transition">Book a Groom</button>
+						<button class="px-4 py-2 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">Adopt Today</button>
+					</div>
+					<button id="menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10" aria-label="Open menu">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5m-16.5 9h16.5" />
+						</svg>
+					</button>
+				</div>
+				<div id="mobile-menu" class="md:hidden hidden flex-col gap-4 pb-6 text-slate-200 text-sm">
+					<a href="#pets" class="hover:text-brand-200 transition">Featured Pets</a>
+					<a href="#services" class="hover:text-brand-200 transition">Services</a>
+					<a href="#wellness" class="hover:text-brand-200 transition">Wellness</a>
+					<a href="#contact" class="hover:text-brand-200 transition">Visit Us</a>
+					<div class="flex gap-3 pt-2">
+						<button class="flex-1 px-4 py-2 text-sm font-semibold text-brand-50 border border-white/15 rounded-full hover:border-brand-200/80 transition">Book a Groom</button>
+						<button class="flex-1 px-4 py-2 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">Adopt Today</button>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="max-w-6xl mx-auto px-4 lg:px-8">
+			<section class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-12 lg:py-16">
+				<div class="space-y-6">
+					<span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-brand-200 text-xs font-semibold uppercase tracking-[0.2em]">Healthy. Happy. Home.</span>
+					<h1 class="text-4xl lg:text-5xl font-extrabold leading-tight text-white">Tail-wagging supplies, spa-level care, and adorable adoptions in one cozy spot.</h1>
+					<p class="text-lg text-slate-200/80 max-w-xl">Discover curated nutrition, playful toys, gentle grooming, and loving companions. At The Happy Tails, every visit feels like a cuddle.</p>
+					<div class="flex flex-wrap gap-3">
+						<button class="px-5 py-3 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">Explore Adoptions</button>
+						<button class="px-5 py-3 text-sm font-semibold text-brand-50 border border-white/20 rounded-full hover:border-brand-200/80 transition">Spa & Grooming</button>
+					</div>
+					<div class="flex flex-wrap gap-6 pt-2 text-slate-200/80 text-sm">
+						<div class="flex items-center gap-3">
+							<div class="h-11 w-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">✨</div>
+							<div>
+								<p class="text-white font-semibold">Premium care plans</p>
+								<p>Vet-reviewed nutrition and wellness</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-3">
+							<div class="h-11 w-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">🏆</div>
+							<div>
+								<p class="text-white font-semibold">Loved by 5k+ families</p>
+								<p>Community-first and pet-obsessed</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="relative">
+					<div class="absolute -left-6 -top-6 h-16 w-16 rounded-full bg-brand-300/60 blur-2xl"></div>
+					<div class="absolute -right-10 bottom-6 h-24 w-24 rounded-full bg-leaf/40 blur-3xl"></div>
+					<div class="relative bg-white/5 border border-white/10 rounded-3xl p-6 shadow-soft backdrop-blur">
+						<div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 border border-white/10">
+							<img id="hero-image" src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=80" alt="Happy dog" class="h-full w-full object-cover" />
+						</div>
+						<div class="flex justify-between items-center text-slate-200 text-sm">
+							<div>
+								<p class="font-semibold text-white" id="hero-title">Meet Willow</p>
+								<p id="hero-desc">Gentle golden retriever who loves kids and cuddle piles.</p>
+							</div>
+							<div class="flex gap-2">
+								<button class="h-10 w-10 rounded-full bg-white/5 border border-white/10 hover:border-brand-200/80 transition" data-hero="prev" aria-label="Previous pet">◀</button>
+								<button class="h-10 w-10 rounded-full bg-brand-300 text-dusk font-bold border border-brand-200/60 hover:bg-brand-400 transition" data-hero="next" aria-label="Next pet">▶</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="pets" class="py-12 lg:py-16 border-t border-b border-white/10">
+				<div class="flex items-center justify-between mb-8">
+					<div>
+						<p class="text-brand-200 uppercase tracking-[0.2em] text-xs font-semibold">Featured friends</p>
+						<h2 class="text-3xl font-bold text-white">Ready for a forever home</h2>
+					</div>
+					<button class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">View all adoptions</button>
+				</div>
+				<div class="grid md:grid-cols-3 gap-6">
+					<article class="group rounded-2xl border border-white/10 bg-white/5 p-4 shadow-soft transition hover:-translate-y-1 hover:border-brand-200/60">
+						<div class="aspect-[4/3] rounded-xl overflow-hidden mb-4">
+							<img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=900&q=80" alt="Playful puppy" class="h-full w-full object-cover group-hover:scale-105 transition" />
+						</div>
+						<div class="flex items-center justify-between text-white font-semibold mb-1">
+							<p>Ollie • 6 mo</p>
+							<span class="px-3 py-1 text-xs rounded-full bg-brand-300 text-dusk font-bold">Puppy</span>
+						</div>
+						<p class="text-slate-200/80 text-sm">Spry beagle-mix who adores fetch and belly rubs.</p>
+					</article>
+					<article class="group rounded-2xl border border-white/10 bg-white/5 p-4 shadow-soft transition hover:-translate-y-1 hover:border-brand-200/60">
+						<div class="aspect-[4/3] rounded-xl overflow-hidden mb-4">
+							<img src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?auto=format&fit=crop&w=900&q=80" alt="Relaxed cat" class="h-full w-full object-cover group-hover:scale-105 transition" />
+						</div>
+						<div class="flex items-center justify-between text-white font-semibold mb-1">
+							<p>Luna • 2 yrs</p>
+							<span class="px-3 py-1 text-xs rounded-full bg-brand-200 text-dusk font-bold">Calm</span>
+						</div>
+						<p class="text-slate-200/80 text-sm">Low-key lap cat who loves sunbeams and quiet naps.</p>
+					</article>
+					<article class="group rounded-2xl border border-white/10 bg-white/5 p-4 shadow-soft transition hover:-translate-y-1 hover:border-brand-200/60">
+						<div class="aspect-[4/3] rounded-xl overflow-hidden mb-4">
+							<img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80" alt="Colorful parrot" class="h-full w-full object-cover group-hover:scale-105 transition" />
+						</div>
+						<div class="flex items-center justify-between text-white font-semibold mb-1">
+							<p>Kiwi • 1 yr</p>
+							<span class="px-3 py-1 text-xs rounded-full bg-brand-500 text-dusk font-bold">Talkative</span>
+						</div>
+						<p class="text-slate-200/80 text-sm">Charming parakeet who mimics laughter and loves treats.</p>
+					</article>
+				</div>
+			</section>
+
+			<section id="services" class="py-12 lg:py-16">
+				<div class="grid lg:grid-cols-2 gap-10 items-center">
+					<div class="space-y-4">
+						<p class="text-brand-200 uppercase tracking-[0.2em] text-xs font-semibold">Services</p>
+						<h2 class="text-3xl font-bold text-white">Everything for wagging tails</h2>
+						<p class="text-slate-200/80">From spa days to training, we tailor every experience to your pet’s personality.</p>
+						<div class="grid sm:grid-cols-2 gap-4">
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+								<h3 class="text-white font-semibold mb-1">Spa & Groom</h3>
+								<p class="text-slate-200/80 text-sm">Hydro baths, de-shed, and pawdicures with hypoallergenic products.</p>
+							</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+								<h3 class="text-white font-semibold mb-1">Training</h3>
+								<p class="text-slate-200/80 text-sm">Positive reinforcement classes, puppy socials, and manners refreshers.</p>
+							</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+								<h3 class="text-white font-semibold mb-1">Nutrition Bar</h3>
+								<p class="text-slate-200/80 text-sm">Vet-approved meals, allergy-friendly treats, and custom plans.</p>
+							</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+								<h3 class="text-white font-semibold mb-1">Daycare Lounge</h3>
+								<p class="text-slate-200/80 text-sm">Supervised play zones, enrichment puzzles, and cuddle corners.</p>
+							</div>
+						</div>
+					</div>
+					<div class="relative">
+						<div class="absolute -left-10 top-10 h-24 w-24 bg-brand-400/30 blur-3xl"></div>
+						<div class="relative rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur">
+							<div class="flex items-center gap-4 mb-4">
+								<div class="h-14 w-14 rounded-2xl bg-brand-300 flex items-center justify-center text-dusk text-xl">💚</div>
+								<div>
+									<p class="text-white font-semibold">Club Happy Tails</p>
+									<p class="text-slate-200/80 text-sm">Members-only perks & wellness drops</p>
+								</div>
+							</div>
+							<ul class="space-y-3 text-slate-200/90 text-sm">
+								<li class="flex items-start gap-3"><span class="text-brand-200">•</span> Monthly spa credits and priority booking</li>
+								<li class="flex items-start gap-3"><span class="text-brand-200">•</span> Free vet Q&A hours and nutrition tune-ups</li>
+								<li class="flex items-start gap-3"><span class="text-brand-200">•</span> Exclusive toys and seasonal snack boxes</li>
+							</ul>
+							<button class="mt-4 w-full px-5 py-3 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">Join the club</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="wellness" class="py-12 lg:py-16 border-t border-b border-white/10">
+				<div class="grid lg:grid-cols-3 gap-10 items-center">
+					<div class="lg:col-span-2 space-y-4">
+						<p class="text-brand-200 uppercase tracking-[0.2em] text-xs font-semibold">Wellness</p>
+						<h2 class="text-3xl font-bold text-white">Vet-guided care that keeps tails wagging</h2>
+						<p class="text-slate-200/80">We partner with local vets to craft routines your pet will love. From supplements to spa resets, we keep it gentle and joyful.</p>
+						<div class="grid sm:grid-cols-3 gap-4">
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+								<p class="text-3xl font-bold text-brand-200">98%</p>
+								<p class="text-slate-200/80 text-sm">Pets show calmer behavior after 2 sessions</p>
+							</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+								<p class="text-3xl font-bold text-brand-200">1200+</p>
+								<p class="text-slate-200/80 text-sm">Customized nutrition plans delivered</p>
+							</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+								<p class="text-3xl font-bold text-brand-200">24/7</p>
+								<p class="text-slate-200/80 text-sm">On-call advice for members</p>
+							</div>
+						</div>
+					</div>
+					<div class="relative">
+						<div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-soft">
+							<img src="https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?auto=format&fit=crop&w=1200&q=80" alt="Vet care" class="w-full h-full object-cover" />
+							<div class="absolute inset-0 bg-gradient-to-t from-dusk/80 via-dusk/30 to-transparent"></div>
+							<div class="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur rounded-2xl px-4 py-3 border border-white/10 text-sm text-slate-100">
+								<p class="font-semibold text-white">Calm handling promise</p>
+								<p class="text-slate-200/80">Fear-free techniques and aromatherapy make each visit soothing.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="py-12 lg:py-16">
+				<div class="grid lg:grid-cols-2 gap-10 items-center">
+					<div class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft">
+						<div class="flex items-center gap-3 mb-4">
+							<div class="h-11 w-11 rounded-2xl bg-brand-300 text-dusk font-bold flex items-center justify-center">★</div>
+							<div>
+								<p class="text-white font-semibold">Loved by locals</p>
+								<p class="text-slate-200/80 text-sm">Real stories from happy families</p>
+							</div>
+						</div>
+						<div class="space-y-3">
+							<blockquote class="text-lg text-white">“The Happy Tails feels like a second home for our pup. The staff remembers his quirks and he leaves calmer every time.”</blockquote>
+							<p class="text-sm text-slate-200/80">— Priya & Mochi</p>
+						</div>
+						<div class="mt-6 flex gap-3">
+							<button class="px-4 py-2 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">Book a playdate</button>
+							<button class="px-4 py-2 text-sm font-semibold text-brand-50 border border-white/20 rounded-full hover:border-brand-200/80 transition">See more reviews</button>
+						</div>
+					</div>
+					<div class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft">
+						<p class="text-brand-200 uppercase tracking-[0.2em] text-xs font-semibold mb-3">Visit us</p>
+						<h3 class="text-2xl font-bold text-white mb-2">Drop by for a sniff test</h3>
+						<p class="text-slate-200/80 mb-4">123 Pawprint Avenue, Petville • Open daily 9am–8pm</p>
+						<div class="grid sm:grid-cols-2 gap-3 text-sm text-slate-200/90">
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-3">Free parking & coffee bar</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-3">Indoor & outdoor play zones</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-3">Same-day grooming slots</div>
+							<div class="rounded-2xl bg-white/5 border border-white/10 p-3">Adoption meet-and-greets</div>
+						</div>
+						<div class="mt-6">
+							<iframe title="Map" class="w-full h-52 rounded-2xl border border-white/10" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.13%2C51.51%2C-0.11%2C51.52&amp;layer=mapnik" loading="lazy"></iframe>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer id="contact" class="border-t border-white/10 bg-black/30 backdrop-blur">
+			<div class="max-w-6xl mx-auto px-4 lg:px-8 py-10 flex flex-col md:flex-row gap-8 md:items-center md:justify-between">
+				<div>
+					<p class="text-sm uppercase tracking-[0.2em] text-brand-200">Stay in the pack</p>
+					<h4 class="text-2xl font-bold text-white">Weekly tips, new arrivals, and happy tales.</h4>
+				</div>
+				<form class="flex flex-col sm:flex-row gap-3 w-full md:w-auto max-w-xl">
+					<input type="email" required placeholder="Your email" class="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-300" />
+					<button class="px-5 py-3 text-sm font-semibold text-dusk bg-brand-300 rounded-full shadow-soft hover:bg-brand-400 transition">Subscribe</button>
+				</form>
+			</div>
+			<div class="max-w-6xl mx-auto px-4 lg:px-8 pb-8 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between text-slate-400 text-sm">
+				<p>© 2026 The Happy Tails. All cuddles reserved.</p>
+				<div class="flex gap-4">
+					<a href="#" class="hover:text-brand-200">Instagram</a>
+					<a href="#" class="hover:text-brand-200">TikTok</a>
+					<a href="#" class="hover:text-brand-200">Facebook</a>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script>
+		const heroCards = [
+			{
+				title: 'Meet Willow',
+				desc: 'Gentle golden retriever who loves kids and cuddle piles.',
+				img: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=80'
+			},
+			{
+				title: 'Buddy the Explorer',
+				desc: 'Adventurous corgi with a zoomie streak and big heart.',
+				img: 'https://images.unsplash.com/photo-1552053566-95c3f1cf6063?auto=format&fit=crop&w=1200&q=80'
+			},
+			{
+				title: 'Cleo the Charmer',
+				desc: 'Playful kitten who purrs on touch and adores strings.',
+				img: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1200&q=80'
+			}
+		];
+
+		let currentHero = 0;
+		const heroImg = document.getElementById('hero-image');
+		const heroTitle = document.getElementById('hero-title');
+		const heroDesc = document.getElementById('hero-desc');
+
+		function showHero(index) {
+			currentHero = (index + heroCards.length) % heroCards.length;
+			const card = heroCards[currentHero];
+			heroImg.src = card.img;
+			heroTitle.textContent = card.title;
+			heroDesc.textContent = card.desc;
+		}
+
+		document.querySelectorAll('[data-hero]').forEach(btn => {
+			btn.addEventListener('click', () => {
+				showHero(currentHero + (btn.dataset.hero === 'next' ? 1 : -1));
+			});
+		});
+
+		setInterval(() => showHero(currentHero + 1), 6500);
+
+		const menuBtn = document.getElementById('menu-btn');
+		const mobileMenu = document.getElementById('mobile-menu');
+		menuBtn.addEventListener('click', () => {
+			mobileMenu.classList.toggle('hidden');
+		});
+	</script>
+</body>
+</html>
